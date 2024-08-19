@@ -6,7 +6,6 @@ public final class AUTH extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getLogger("start")
 
     }
 
