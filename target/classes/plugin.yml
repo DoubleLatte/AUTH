@@ -1,0 +1,10 @@
+name: AUTH
+version: '1.0-BETA'
+main: me.ddlatte.auth.AUTH
+api-version: '1.19'
+prefix: 인증
+
+commands:
+  login:
+    description: 5자리 인증 코드를 생성합니다.
+    usage: /<command>

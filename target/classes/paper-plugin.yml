@@ -1,6 +1,0 @@
-name: AUTH
-version: '1.0-SNAPSHOT'
-main: me.ddlatte.auth.AUTH
-api-version: '1.19'
-prefix: 인증
-authors: [ DDLATTE ]
