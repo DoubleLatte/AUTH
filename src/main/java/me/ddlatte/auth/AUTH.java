@@ -88,7 +88,7 @@ public class AUTH extends JavaPlugin {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!command.getName().equalsIgnoreCase("login")) return false;
+        if (!command.getName().equalsIgnoreCase("로그인")) return false;
 
         if (!(sender instanceof Player)) {
             sender.sendMessage("이 명령어는 플레이어만 사용할 수 있습니다.");

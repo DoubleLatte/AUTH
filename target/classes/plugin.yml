@@ -6,6 +6,6 @@ prefix: 인증
 authors: [ DDLATTE ]
 
 commands:
-  login:
+  로그인:
     description: 5자리 인증 코드를 생성합니다.
     usage: /<command>
