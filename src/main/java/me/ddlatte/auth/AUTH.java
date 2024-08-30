@@ -100,14 +100,28 @@ public class AUTH extends JavaPlugin {
 
         try {
             ensureConnection();
-            String authCode = getOrCreateAuthCode(uuid, player.getName());
-            player.sendMessage("인증 코드: " + authCode);
+            if (isAccountLinked(uuid)) {
+                player.sendMessage("이미 연동되었습니다.");
+            } else {
+                String authCode = getOrCreateAuthCode(uuid, player.getName());
+                player.sendMessage("인증 코드: " + authCode);
+            }
         } catch (SQLException e) {
             player.sendMessage("인증 코드 처리 중 오류가 발생했습니다.");
             getLogger().log(Level.SEVERE, "인증 코드 처리 실패", e);
         }
 
         return true;
+    }
+
+    private boolean isAccountLinked(String uuid) throws SQLException {
+        String sql = "SELECT is_used FROM AUTH WHERE uuid = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, uuid);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                return rs.next() && rs.getBoolean("is_used");
+            }
+        }
     }
 
     private void ensureConnection() throws SQLException {
@@ -134,6 +148,7 @@ public class AUTH extends JavaPlugin {
         saveAuthCode(uuid, newCode, playerName);
         return newCode;
     }
+
 
     private String getUnusedAuthCode(String uuid) throws SQLException {
         String sql = "SELECT key_code FROM AUTH WHERE uuid = ? AND is_used = false";
